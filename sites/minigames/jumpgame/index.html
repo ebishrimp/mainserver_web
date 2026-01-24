@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>障害物回避ジャンプゲーム - えびてんホームページ</title>
+    <link rel="stylesheet" href="/sites/MainCSS/main.css">
+    <link rel="stylesheet" href="style.css"> </head>
+<body>
+
+    <header class="site-header">
+        <div class="container">
+            <h1 class="main-title">障害物回避ジャンプゲーム</h1>
+            <nav class="breadcrumb">
+                <a href="/">トップ</a> ＞ <a href="/sites/minigames/">ミニゲーム</a> ＞ 障害物回避ジャンプゲーム
+            </nav>
+        </div>
+    </header>
+
+    <main class="container game-container">
+        <div id="start-screen" class="game-screen active">
+            <h2>えびてん冒険記</h2>
+            <p>ジャンプで障害物を避けて進め！</p>
+            <button id="start-button">ゲームスタート</button>
+        </div>
+
+        <div id="game-screen" class="game-screen">
+            <canvas id="gameCanvas" width="800" height="400"></canvas>
+            <div id="score-display">スコア: 0</div>
+        </div>
+
+        <div id="gameover-screen" class="game-screen">
+            <h2>ゲームオーバー</h2>
+            <p id="final-score">最終スコア: 0</p>
+            <button id="restart-button">もう一度遊ぶ</button>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p><a href="/sites/minigames/">ミニゲーム一覧に戻る</a></p>
+        <p>&copy; 2026 えびてんホームページ</p>
+    </footer>
+
+    <script src="game.js"></script> </body>
+</html>
