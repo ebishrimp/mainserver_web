@@ -1,13 +1,161 @@
-.title
-{
-    background-color: #FFF9CC;
-    text-align: center;
-    margin-top: 50px;
-    font-size: 100px;
+/* --- 変数の定義：ここを変えるだけでサイト全体の色調が変わります --- */
+:root {
+    --bg-color: #f8f9fa;
+    --card-bg: #ffffff;
+    --accent-color: #FFF9CC;
+    --text-color: #333;
+    --primary-blue: #007bff;
+    --font-main: 'Helvetica Neue', Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
 }
 
-.head_img
-{
-    display: block;
+/* --- ベーススタイル --- */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1000px;
     margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- ヘッダー --- */
+.site-header {
+    background-color: #fff;
+    padding: 60px 0;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.head-img {
+    max-width: 200px; /* サイズは適宜調整してください */
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.main-title {
+    font-size: 3rem; /* 100pxは流石に大きすぎるため、モダンな48px〜相当に調整 */
+    margin: 0;
+    background-color: var(--accent-color);
+    display: inline-block;
+    padding: 0 20px;
+    border-radius: 8px;
+}
+
+/* --- コンテンツエリア --- */
+.nav-section {
+    padding: 40px 0;
+}
+
+.section-title {
+    border-left: 5px solid var(--primary-blue);
+    padding-left: 15px;
+    margin-bottom: 30px;
+}
+
+/* --- カード型ナビゲーション：ここが拡張の肝 --- */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.card-content h3 {
+    margin-top: 0;
+    color: var(--primary-blue);
+}
+
+/* --- フッター --- */
+.site-footer {
+    text-align: center;
+    padding: 40px 0;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.main-title {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.cursor {
+    color: var(--primary-blue);
+    animation: blink 0.8s infinite;
+    margin-left: 5px;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* カード内のアイコン設定 */
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    display: block;
+}
+
+/* カードのホバー演出をさらにリッチに */
+.card {
+    background: var(--card-bg);
+    border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 16px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    top: 0;
+}
+
+.card:hover {
+    top: -8px;
+    border-color: var(--primary-blue);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+}
+
+/* ダークモード時のボーダー調整 */
+@media (prefers-color-scheme: dark) {
+    .card {
+        border-color: rgba(255,255,255,0.05);
+    }
+}
+
+/* パンくずリスト */
+.breadcrumb {
+    margin-top: 20px;
+    font-size: 0.9rem;
+}
+.breadcrumb a {
+    color: var(--primary-blue);
+    text-decoration: none;
+}
+
+/* ゲームタグ（アドベンチャー、アクションなど） */
+.game-tag {
+    display: inline-block;
+    background: var(--primary-blue);
+    color: #fff;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+/* ゲームカード独自のスタイル */
+.game-card .card-icon {
+    font-size: 3rem;
+    transition: transform 0.3s;
+}
+
+.game-card:hover .card-icon {
+    transform: scale(1.2) rotate(5deg); /* ホバー時にアイコンが動く演出 */
 }

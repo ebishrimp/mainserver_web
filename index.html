@@ -1,17 +1,33 @@
+<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>えびてんホームページ</title>
-    <link rel="stylesheet" href="/sites/MainCSS/main.css">
+    <link rel="stylesheet" href="/sites/css/main.css">
+    <script src="/sites/scripts/main.js" defer></script>
 </head>
-
 <body>
-<header>
-    <img class="head_img" src="/sites/image/head_img.png">
-    <div class="title">
-    こんにちは
-    </div>
-    <p><a href="/bedrockmap">統合版サーバー地図</a></p>
-</header>
+
+    <header class="site-header">
+        <div class="container">
+            <img class="head-img" src="/sites/image/head_img.png" alt="サイトロゴ">
+            <h1 class="main-title">
+                <span id="greeting-target">...Loading</span><span class="cursor">|</span>
+            </h1>
+        </div>
+    </header>
+
+    <main class="container">
+    <section class="nav-section">
+        <h2 class="section-title">コンテンツ一覧</h2>
+        <div id="nav-grid" class="card-grid"></div>
+    </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 えびてんホームページ</p>
+    </footer>
+
 </body>
 </html>
