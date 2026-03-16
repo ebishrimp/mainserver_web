@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>エビストア・シミュレーター</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <div id="hud">
+            <div class="stats">
+                <span>💰 資金: <span id="money-display">5000</span>円</span>
+                <span>📅 営業日: <span id="day-display">1</span>日目</span>
+                <span>⭐ ランク: <span id="rank-display">1</span></span>
+            </div>
+            <div class="view-toggle">
+                <button id="btn-stock-view" class="active">📦 品出しビュー</button>
+                <button id="btn-register-view">🛒 レジビュー</button>
+            </div>
+        </div>
+
+        <canvas id="gameCanvas" width="640" height="480"></canvas>
+
+        <div id="action-panel">
+            <div id="panel-stock" class="panel active">
+                <h3>仕入れ・価格設定</h3>
+                <button id="btn-buy-raw">生エビ仕入れ (500円)</button>
+                <label>売価設定: <input type="number" id="price-raw" value="800" step="50">円</label>
+                <button id="btn-restock">棚に並べる</button>
+            </div>
+            <div id="panel-register" class="panel">
+                <h3>レジ業務・雇用</h3>
+                <button id="btn-checkout">手動で会計する</button>
+                <button id="btn-hire">スタッフを雇う (日給1000円)</button>
+                <p>現在のスタッフ: <span id="staff-count">0</span>人</p>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="./dist/main.js"></script>
+</body>
+</html>

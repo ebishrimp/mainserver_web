@@ -1,24 +1,19 @@
 import { GameState } from './Game.js';
 import { Store } from './Store.js';
 import { Customer } from './Customer.js';
-
-const canvas = document.getElementById('gameCanvas') as HTMLCanvasElement;
-const ctx = canvas.getContext('2d')!;
-
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
 const game = new GameState();
 const store = new Store();
-let customers: Customer[] = [];
-
+let customers = [];
 // 視点管理
-let currentView: 'STOCK' | 'REGISTER' = 'STOCK';
-
+let currentView = 'STOCK';
 // アセット管理 (ダミー画像オブジェクト)
-const images: { [key: string]: HTMLImageElement } = {};
+const images = {};
 const assetNames = [
     'bg_store_side', 'bg_store_register',
     'item_ebi_raw', 'char_customer', 'char_staff'
 ];
-
 // 初期化
 function init() {
     // 画像の読み込み（実際にはパスを指定してロードします）
@@ -27,18 +22,15 @@ function init() {
         img.src = `assets/images/${name}.png`;
         images[name] = img;
     });
-
     setupUI();
     requestAnimationFrame(gameLoop);
 }
-
 // UIイベントのバインド
 function setupUI() {
-    const btnStockView = document.getElementById('btn-stock-view')!;
-    const btnRegisterView = document.getElementById('btn-register-view')!;
-    const panelStock = document.getElementById('panel-stock')!;
-    const panelRegister = document.getElementById('panel-register')!;
-
+    const btnStockView = document.getElementById('btn-stock-view');
+    const btnRegisterView = document.getElementById('btn-register-view');
+    const panelStock = document.getElementById('panel-stock');
+    const panelRegister = document.getElementById('panel-register');
     // 視点切り替え
     btnStockView.addEventListener('click', () => {
         currentView = 'STOCK';
@@ -47,7 +39,6 @@ function setupUI() {
         panelStock.classList.add('active');
         panelRegister.classList.remove('active');
     });
-
     btnRegisterView.addEventListener('click', () => {
         currentView = 'REGISTER';
         btnRegisterView.classList.add('active');
@@ -55,104 +46,87 @@ function setupUI() {
         panelRegister.classList.add('active');
         panelStock.classList.remove('active');
     });
-
     // 仕入れ・価格
     document.getElementById('btn-buy-raw')?.addEventListener('click', () => {
         game.money = store.buyStock(game.money, 500);
         updateHUD();
     });
-
     document.getElementById('price-raw')?.addEventListener('change', (e) => {
-        const target = e.target as HTMLInputElement;
+        const target = e.target;
         store.itemData.playerPrice = parseInt(target.value) || 0;
     });
-
     document.getElementById('btn-restock')?.addEventListener('click', () => {
         store.restockShelf();
     });
-
     // レジ・雇用
     document.getElementById('btn-checkout')?.addEventListener('click', () => {
         processCheckout();
     });
-
     document.getElementById('btn-hire')?.addEventListener('click', () => {
         if (game.hireStaff()) {
-            (document.getElementById('staff-count') as HTMLElement).innerText = game.staffCount.toString();
+            document.getElementById('staff-count').innerText = game.staffCount.toString();
             updateHUD();
         }
     });
 }
-
 // レジ処理
 function processCheckout() {
     if (customers.length > 0 && customers[0].state === 'WAITING') {
-        const customer = customers.shift()!;
+        const customer = customers.shift();
         if (store.shelfCount > 0 && customer.decideToBuy(store)) {
             store.shelfCount--;
             game.money += store.itemData.playerPrice;
             console.log("売れました！");
-        } else {
+        }
+        else {
             console.log("高すぎる、または在庫切れで帰りました。");
         }
         customer.state = 'LEAVING';
     }
 }
-
 function updateHUD() {
-    (document.getElementById('money-display') as HTMLElement).innerText = game.money.toString();
-    (document.getElementById('day-display') as HTMLElement).innerText = game.day.toString();
+    document.getElementById('money-display').innerText = game.money.toString();
+    document.getElementById('day-display').innerText = game.day.toString();
 }
-
 // メインループ
 function gameLoop() {
-    if (game.isGameOver) return;
-
+    if (game.isGameOver)
+        return;
     game.updateTime();
-
     // お客さんのランダム生成
     if (Math.random() < 0.01 && customers.length < 3) {
         customers.push(new Customer());
     }
-
     // お客さんの更新
     customers.forEach(c => c.update(300));
-
     // スタッフによる自動レジ
     if (game.staffCount > 0 && game.tick % 60 === 0) {
         processCheckout();
     }
-
     updateHUD();
     draw();
-
     requestAnimationFrame(gameLoop);
 }
-
 // 描画処理
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
     if (currentView === 'STOCK') {
         // 品出しビュー（サイドビュー）
         ctx.fillStyle = '#7f8c8d';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
         // 棚と在庫の簡易描画
         ctx.fillStyle = '#fff';
         ctx.font = '20px Courier New';
         ctx.fillText(`バックヤード在庫: ${store.inventory} 個`, 50, 100);
         ctx.fillText(`棚の陳列数: ${store.shelfCount} / ${store.maxShelf}`, 50, 150);
-
-    } else {
+    }
+    else {
         // レジビュー（トップダウン）
         ctx.fillStyle = '#27ae60';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-
         // レジカウンター
         ctx.fillStyle = '#8e44ad';
         ctx.fillRect(250, 280, 100, 50);
-
         // お客さんの描画
         customers.forEach(c => {
             ctx.fillStyle = '#e67e22';
@@ -162,7 +136,6 @@ function draw() {
                 ctx.fillText('💭', c.x, c.y - 10);
             }
         });
-
         // スタッフの描画
         if (game.staffCount > 0) {
             ctx.fillStyle = '#3498db';
@@ -170,6 +143,5 @@ function draw() {
         }
     }
 }
-
 // 起動
 init();
