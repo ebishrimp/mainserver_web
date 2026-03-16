@@ -13,6 +13,13 @@ document.addEventListener('DOMContentLoaded', () => {
             url: "/sites/minigames/blockbreaker/",
             tag: "アクション",
             image: "🧱"
+        },
+        {
+            title: "経営シミュレーションゲーム",
+            desc: "経営シミュレーション",
+            url: "/sites/minigames/storesimu/",
+            tag: "シミュレーション",
+            image: "🏪"
         }
         // 今後ゲームを増やしたい時は、ここにカンマ区切りで追加するだけ！
     ];
