@@ -175,11 +175,28 @@ document.addEventListener('DOMContentLoaded', () => {
     startButton.addEventListener('click', initGame);
     restartButton.addEventListener('click', initGame);
 
-    document.addEventListener('keydown', (e) => {
-        if (e.code === 'Space' && !player.isJumping && !isGameOver) {
+    function triggerJump() {
+        if (!player.isJumping && !isGameOver && gameScreen.classList.contains('active')) {
             player.velocityY = jumpPower;
             player.isJumping = true;
         }
+    }
+
+    // キーボード操作
+    document.addEventListener('keydown', (e) => {
+        if (e.code === 'Space') {
+            triggerJump();
+        }
+    });
+
+    // タッチ・クリック操作（Canvas上をタップでジャンプ）
+    canvas.addEventListener('touchstart', (e) => {
+        e.preventDefault(); // ブラウザのスクロール等を防ぐ
+        triggerJump();
+    }, { passive: false });
+
+    canvas.addEventListener('mousedown', (e) => {
+        triggerJump();
     });
 
     // 初期表示

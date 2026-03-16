@@ -43,7 +43,7 @@
 
 button {
     background-color: var(--primary-blue);
-    color: white;
+    color: rgb(172, 205, 255);
     padding: 12px 25px;
     font-size: 1.1rem;
     border: none;
