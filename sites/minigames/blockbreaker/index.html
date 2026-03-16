@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ブロック崩し</title>
+    <link rel="stylesheet" href="/sites/MainCSS/main.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1 class="main-title">ブロック崩し</h1>
+        </div>
+    </header>
+
+    <main class="container game-container">
+        <div id="game-info">
+            <span>Score: <span id="score">0</span></span>
+            <span>Lives: <span id="lives">3</span></span>
+        </div>
+        <canvas id="gameCanvas" width="480" height="320"></canvas>
+        <div class="controls">
+            <button id="start-btn">ゲームスタート</button>
+        </div>
+    </main>
+
+    <script src="game.js"></script>
+</body>
+</html>
