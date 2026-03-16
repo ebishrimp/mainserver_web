@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             title: "ブロック崩し",
             desc: "HTML5 Canvasで作ったシンプルなブロック崩し。",
-            url: "/sites/minigames/breakout/",
+            url: "/sites/minigames/blockbreaker/",
             tag: "アクション",
             image: "🧱"
         }
