@@ -1,0 +1,27 @@
+.game-container {
+    text-align: center;
+    padding: 20px;
+}
+
+#gameCanvas {
+    background: #4f4f4f;
+    border: 4px solid var(--primary-blue);
+    border-radius: 8px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    touch-action: none; /* スマホのスクロール防止 */
+}
+
+#game-info {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.controls {
+    margin-top: 20px;
+}
