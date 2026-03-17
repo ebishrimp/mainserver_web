@@ -1,0 +1,1 @@
+body{margin:0;overflow:hidden;background:#111;color:#fff;font-family:system-ui,sans-serif}#overlay{position:fixed;z-index:100;top:8px;left:8px;background:#00000080;padding:8px 10px;border-radius:6px;font-size:13px;line-height:1.4}canvas{display:block}
