@@ -16,10 +16,17 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             title: "経営シミュレーションゲーム",
-            desc: "経営シミュレーション",
+            desc: "未完成",
             url: "/sites/minigames/storesimu/",
             tag: "シミュレーション",
             image: "🏪"
+        },
+        {
+            title: "ボクセルサンドボックス",
+            desc: "3Dボクセルゲーム",
+            url: "/sites/minigames/voxel/",
+            tag: "サンドボックス",
+            image: "🧱"
         }
         // 今後ゲームを増やしたい時は、ここにカンマ区切りで追加するだけ！
     ];
