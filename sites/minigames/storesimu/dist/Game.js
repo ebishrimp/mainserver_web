@@ -14,8 +14,8 @@ export class GameState {
         if (this.isGameOver)
             return;
         this.tick++;
-        // 約60フレーム = 1秒。10秒(600フレーム)で1日経過とする
-        if (this.tick >= 600) {
+        // 約60フレーム = 1秒。60秒(3600フレーム)で1日経過とする
+        if (this.tick >= 3600) {
             this.tick = 0;
             this.day++;
             this.payExpenses();

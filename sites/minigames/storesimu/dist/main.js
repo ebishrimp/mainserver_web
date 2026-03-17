@@ -14,6 +14,7 @@ const assetNames = [
     'bg_store_side', 'bg_store_register',
     'item_ebi_raw', 'char_customer', 'char_staff'
 ];
+// `main.js` が `dist/` 内にある場合も正しいパスを解決する
 const assetBaseUrl = new URL('../assets/images/', import.meta.url).href;
 // 初期化
 function init() {
@@ -115,7 +116,8 @@ function draw() {
         // 品出しビュー（サイドビュー）
         if (images.bg_store_side && images.bg_store_side.complete) {
             ctx.drawImage(images.bg_store_side, 0, 0, canvas.width, canvas.height);
-        } else {
+        }
+        else {
             ctx.fillStyle = '#7f8c8d';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
         }
@@ -129,10 +131,14 @@ function draw() {
         // レジビュー（トップダウン）
         if (images.bg_store_register && images.bg_store_register.complete) {
             ctx.drawImage(images.bg_store_register, 0, 0, canvas.width, canvas.height);
-        } else {
+        }
+        else {
             ctx.fillStyle = '#27ae60';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
         }
+        // レジビュー（トップダウン）
+        ctx.fillStyle = '#27ae60';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
         // レジカウンター
         ctx.fillStyle = '#8e44ad';
         ctx.fillRect(250, 280, 100, 50);
@@ -140,7 +146,8 @@ function draw() {
         customers.forEach(c => {
             if (images.char_customer && images.char_customer.complete) {
                 ctx.drawImage(images.char_customer, c.x, c.y, 30, 30);
-            } else {
+            }
+            else {
                 ctx.fillStyle = '#e67e22';
                 ctx.fillRect(c.x, c.y, 30, 30);
             }
@@ -153,7 +160,8 @@ function draw() {
         if (game.staffCount > 0) {
             if (images.char_staff && images.char_staff.complete) {
                 ctx.drawImage(images.char_staff, 285, 240, 30, 30);
-            } else {
+            }
+            else {
                 ctx.fillStyle = '#3498db';
                 ctx.fillRect(285, 240, 30, 30); // レジの奥に立つ
             }
