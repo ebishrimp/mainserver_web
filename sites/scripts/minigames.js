@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             title: "ボクセルサンドボックス",
-            desc: "3Dボクセルゲーム",
+            desc: "未完成",
             url: "/sites/minigames/voxel/",
             tag: "サンドボックス",
             image: "🧱"
