@@ -8,18 +8,19 @@ const store = new Store();
 let customers = [];
 // 視点管理
 let currentView = 'STOCK';
-// アセット管理 (ダミー画像オブジェクト)
+// アセット管理
 const images = {};
 const assetNames = [
     'bg_store_side', 'bg_store_register',
     'item_ebi_raw', 'char_customer', 'char_staff'
 ];
+const assetBaseUrl = new URL('../assets/images/', import.meta.url).href;
 // 初期化
 function init() {
-    // 画像の読み込み（実際にはパスを指定してロードします）
+    // 画像の読み込み
     assetNames.forEach(name => {
         const img = new Image();
-        img.src = `assets/images/${name}.png`;
+        img.src = `${assetBaseUrl}${name}.png`;
         images[name] = img;
     });
     setupUI();
@@ -112,8 +113,12 @@ function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     if (currentView === 'STOCK') {
         // 品出しビュー（サイドビュー）
-        ctx.fillStyle = '#7f8c8d';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        if (images.bg_store_side && images.bg_store_side.complete) {
+            ctx.drawImage(images.bg_store_side, 0, 0, canvas.width, canvas.height);
+        } else {
+            ctx.fillStyle = '#7f8c8d';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
         // 棚と在庫の簡易描画
         ctx.fillStyle = '#fff';
         ctx.font = '20px Courier New';
@@ -122,15 +127,23 @@ function draw() {
     }
     else {
         // レジビュー（トップダウン）
-        ctx.fillStyle = '#27ae60';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        if (images.bg_store_register && images.bg_store_register.complete) {
+            ctx.drawImage(images.bg_store_register, 0, 0, canvas.width, canvas.height);
+        } else {
+            ctx.fillStyle = '#27ae60';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
         // レジカウンター
         ctx.fillStyle = '#8e44ad';
         ctx.fillRect(250, 280, 100, 50);
         // お客さんの描画
         customers.forEach(c => {
-            ctx.fillStyle = '#e67e22';
-            ctx.fillRect(c.x, c.y, 30, 30);
+            if (images.char_customer && images.char_customer.complete) {
+                ctx.drawImage(images.char_customer, c.x, c.y, 30, 30);
+            } else {
+                ctx.fillStyle = '#e67e22';
+                ctx.fillRect(c.x, c.y, 30, 30);
+            }
             if (c.state === 'WAITING') {
                 ctx.fillStyle = '#fff';
                 ctx.fillText('💭', c.x, c.y - 10);
@@ -138,8 +151,12 @@ function draw() {
         });
         // スタッフの描画
         if (game.staffCount > 0) {
-            ctx.fillStyle = '#3498db';
-            ctx.fillRect(285, 240, 30, 30); // レジの奥に立つ
+            if (images.char_staff && images.char_staff.complete) {
+                ctx.drawImage(images.char_staff, 285, 240, 30, 30);
+            } else {
+                ctx.fillStyle = '#3498db';
+                ctx.fillRect(285, 240, 30, 30); // レジの奥に立つ
+            }
         }
     }
 }
