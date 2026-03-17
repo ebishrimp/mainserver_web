@@ -115,7 +115,7 @@ function animate() {
   const delta = Math.min((now - last) / 1000, 0.033);
   last = now;
 
-  player.applyMovement(delta, camera);
+  player.applyMovement(delta, camera, world);
 
   renderer.render(scene, camera);
 
