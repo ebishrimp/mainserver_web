@@ -36,6 +36,12 @@ document.addEventListener('DOMContentLoaded', () => {
             icon: "🗺️"
         },
         {
+            title: "統合版サーバーネザー地図",
+            desc: "ネザーの地図はこちら",
+            url: "/bedrocknethermap",
+            icon: "🗺️"
+        },
+        {
             title: "ミニゲーム",
             desc: "ブラウザで遊べるちょっとしたゲーム",
             url: "/sites/minigames",
