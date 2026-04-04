@@ -15,15 +15,15 @@ document.addEventListener('DOMContentLoaded', () => {
             image: "🧱"
         },
         {
-            title: "経営シミュレーションゲーム",
-            desc: "未完成",
+            title: "<未完成>経営シミュレーションゲーム",
+            desc: "スタッフ雇うとバグる",
             url: "/sites/minigames/storesimu/",
             tag: "シミュレーション",
             image: "🏪"
         },
         {
-            title: "ボクセルサンドボックス",
-            desc: "未完成",
+            title: "<未完成>ボクセルサンドボックス",
+            desc: "そもそも動かない",
             url: "/sites/minigames/voxel/",
             tag: "サンドボックス",
             image: "🧱"
