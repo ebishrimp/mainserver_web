@@ -42,6 +42,12 @@ document.addEventListener('DOMContentLoaded', () => {
             icon: "🗺️"
         },
         {
+            title: "統合版サーバーエンド地図",
+            desc: "エンドの地図はこちら",
+            url: "/bedrockendmap",
+            icon: "🗺️"
+        },
+        {
             title: "ミニゲーム",
             desc: "ブラウザで遊べるちょっとしたゲーム",
             url: "/sites/minigames",
