@@ -109,6 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // 敵と障害物の更新
         enemies.forEach(enemy => {
             enemy.x -= scrollSpeed;
+            enemy.x -= score / 20;
             if (
                 player.x < enemy.x + enemy.width &&
                 player.x + player.width > enemy.x &&
@@ -122,6 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         obstacles.forEach(obstacle => {
             obstacle.x -= scrollSpeed;
+            obstacle.x -= score / 20;
             if (
                 player.x < obstacle.x + obstacle.width &&
                 player.x + player.width > obstacle.x &&
